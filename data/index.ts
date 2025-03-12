@@ -20,7 +20,7 @@ export const gridItems = [
   },
   {
     id: 2,
-    title: "Adaptable across different time zones and workflows",
+    title: "Adaptable across different time zones",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
@@ -79,7 +79,7 @@ export const projects = [
     des: "A portfolio built with Next.js 14,Tailwind Css,showcasing skills in development, product marketing, and design.",
     img: "/p1.png",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", ],
-    link: "https://your-portfolio-url.com", // Replace with your real URL
+    link: "oyekolaobajuwon.vercel.app", // Replace with your real URL
   },
   {
     id: 2,
