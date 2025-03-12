@@ -43,7 +43,7 @@ const Hero = () => {
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            I'm Oyekola Obajuwon A Product & Digital Marketing Manager and a Next.js Developer.
+            I&apos;m Oyekola Obajuwon A Product & Digital Marketing Manager and a Next.js Developer.
           </p>
 
           <a href="#about">

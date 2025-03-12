@@ -41,7 +41,7 @@ const Approach = () => {
             <Card
               title="Planning & Strategy"
               icon={<AceternityIcon order="Phase 1" />}
-              des="We'll collaborate to map out your website's goals, target audience, and key functionalities."
+              des="We&apos;ll collaborate to map out your website&apos;s goals, target audience, and key functionalities."
             >
               <CanvasRevealEffect
                 animationSpeed={5.1}
@@ -63,7 +63,7 @@ const Approach = () => {
             <Card
               title="Development & Launch"
               icon={<AceternityIcon order="Phase 3" />}
-              des="Based on the approved design, I'll translate everything into functional code."
+              des="Based on the approved design, I&apos;ll translate everything into functional code."
             >
               <CanvasRevealEffect
                 animationSpeed={3}
