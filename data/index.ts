@@ -1,3 +1,5 @@
+import { link } from "fs";
+
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
@@ -8,17 +10,17 @@ export const navItems = [
 export const gridItems = [
   {
     id: 1,
-    title: "I prioritize client collaboration, fostering open communication ",
+    title: "I prioritize Clear communication and collaboration ",
     description: "",
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     imgClassName: "w-full h-full",
     titleClassName: "justify-end",
-    img: "/b1.svg",
+    img: "/b1.png",
     spareImg: "",
   },
   {
     id: 2,
-    title: "I'm very flexible with time zone communications",
+    title: "Adaptable across different time zones and workflows",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
@@ -38,7 +40,7 @@ export const gridItems = [
   },
   {
     id: 4,
-    title: "Tech enthusiast with a passion for development.",
+    title: "Passionate about development, AI, and data-driven problem-solving",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
@@ -49,14 +51,15 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently building a JS Animation library",
+    title: "Currently implementing AI into my different areas of expertise ",
     description: "The Inside Scoop",
     className: "md:col-span-3 md:row-span-2",
-    imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
+    imgClassName: "absolute right-0 bottom-0 md:w-[500px] w-[350px] md:h-[400px] h-[250px]", 
     titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "/b5.svg",
+    img: "/b5.png",
     spareImg: "/grid.svg",
   },
+    
   {
     id: 6,
     title: "Do you want to start a project together?",
@@ -72,37 +75,38 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "3D Solar System Planets to Explore",
-    des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
-    img: "/p1.svg",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
-    link: "/ui.earth.com",
+    title: "Portfolio Website",
+    des: "A portfolio built with Next.js 14,Tailwind Css,showcasing skills in development, product marketing, and design.",
+    img: "/p1.png",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", ],
+    link: "https://your-portfolio-url.com", // Replace with your real URL
   },
   {
     id: 2,
-    title: "Yoom - Video Conferencing App",
-    des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
-    img: "/p2.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "/ui.yoom.com",
+    title: "Graphics & Video Work",
+    des: "A collection of design and video projects, including brand visuals and social media content.",
+    img: "/p2.png",
+    iconLists: ["/capcut.jpg","/canva.jpg", "/davinci.jpg"],
+    link: "https://cobalt-ball-550.notion.site/My-Designer-gallery-1b1808a6964880289d99c59aa0816b24", // Replace with Google Drive/Notion link
   },
   {
     id: 3,
-    title: "AI Image SaaS - Canva Application",
-    des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
-    img: "/p3.svg",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-    link: "/ui.aiimg.com",
+    title: "Product & Marketing Docs",
+    des: "PRDs, content calendars, and strategy documents for marketing and product management.",
+    img: "/p3.png",
+    iconLists: ["/Notion.jpg", "/google.jpg", ],
+    link: "https://cobalt-ball-550.notion.site/1b1808a6964880a494b7c1d5a15eca6a?v=1b1808a69648808c8384000c1c8", // Replace with Notion/Docs link
   },
   {
     id: 4,
-    title: "Animated Apple Iphone 3D Website",
-    des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
-    img: "/p4.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-    link: "/ui.apple.com",
+    title: "9jaSchoolsHub Product Roadmap",
+    des: "A roadmap outlining features, timelines, and updates for 9jaSchoolsHub.",
+    img: "/p4.png",
+    iconLists: ["/notion.jpg", "/google.jpg"],
+    link: "https://cobalt-ball-550.notion.site/9ja-School-Hub-Product-Roadmap-188808a6964880bd83e9ceb270c22b7f", // Replace with your Notion roadmap
   },
 ];
+
 
 export const testimonials = [
   {
@@ -137,7 +141,7 @@ export const testimonials = [
   },
 ];
 
-export const companies = [
+/*export const companies = [
   {
     id: 1,
     name: "cloudinary",
@@ -168,50 +172,54 @@ export const companies = [
     img: "/dock.svg",
     nameImg: "/dockerName.svg",
   },
-];
+];*/
 
 export const workExperience = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+    title: "Assistant Product Manager - Swquads",
+    desc: "Managing product development and marketing strategies, ensuring seamless collaboration between teams.",
     className: "md:col-span-2",
-    thumbnail: "/exp1.svg",
-  },
-  {
-    id: 2,
-    title: "Mobile App Dev - JSM Tech",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp2.svg",
-  },
-  {
-    id: 3,
-    title: "Freelance App Dev Project",
-    desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
-    className: "md:col-span-2", // change to md:col-span-2
     thumbnail: "/exp3.svg",
   },
   {
-    id: 4,
-    title: "Lead Frontend Developer",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
+    id: 2,
+    title: "Co-Product Manager - 9jaSchoolsHub(Open-source)",
+    desc: "Leading the product roadmap and user engagement strategies for an education-focused platform.",
     className: "md:col-span-2",
-    thumbnail: "/exp4.svg",
+    thumbnail: "/exp3.svg",
+  },
+  {
+    id: 3,
+    title: "Media Intern - Unique Style Hub",
+    desc: "Created graphics, videos, and content calendars for a fashion-focused brand.",
+    className: "md:col-span-2",
+    thumbnail: "/exp2.svg",
+  },
+  {
+    id: 4,
+    title: "Freelance Product Marketing & Design",
+    desc: "Working with diverse clients on branding, marketing campaigns, and product positioning.",
+    className: "md:col-span-2",
+    thumbnail: "/exp2.svg",
   },
 ];
+
 
 export const socialMedia = [
   {
     id: 1,
     img: "/git.svg",
+    link: "https://github.com/shinigamieaper", 
   },
   {
     id: 2,
-    img: "/twit.svg",
+    img: "/insta.svg",
+    link: "https://www.linkedin.com/in/abdulsalam-oyekola-017b67346/", // Replace with Notion/Docs link
   },
   {
     id: 3,
     img: "/link.svg",
+    link: "https://www.linkedin.com/in/abdulsalam-oyekola-017b67346/", 
   },
 ];

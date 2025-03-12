@@ -1,11 +1,11 @@
-"use client";
+/*"use client";
 
 import React from "react";
 
 import { companies, testimonials } from "@/data";
 import { InfiniteMovingCards } from "./ui/InfiniteCards";
 
-const Clients = () => {
+{//const Clients = () => {
   return (
     <section id="testimonials" className="py-20">
       <h1 className="heading">
@@ -50,3 +50,4 @@ const Clients = () => {
 };
 
 export default Clients;
+*/
