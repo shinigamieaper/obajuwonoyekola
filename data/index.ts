@@ -78,7 +78,7 @@ export const projects = [
     title: "9jaSchoolsHub Product Roadmap",
     des: "A roadmap outlining features, timelines, and updates for 9jaSchoolsHub.",
     img: "/p4.png",
-    iconLists: ["/notion.jpg", "/google.jpg"],
+    iconLists: ["/Notion.jpg", "/google.jpg"],
     link: "https://cobalt-ball-550.notion.site/9ja-School-Hub-Product-Roadmap-188808a6964880bd83e9ceb270c22b7f", // Replace with your Notion roadmap
   },
   {
@@ -167,7 +167,7 @@ export const testimonials = [
 export const workExperience = [
   {
     id: 1,
-    title: "Assistant Product Manager|Product Marketing Manager - Swqads",
+    title: "Assistant Product Manager|Product Marketing Manager - Sqwads",
     desc: "Managing product development and marketing strategies, ensuring seamless collaboration between teams.",
     className: "md:col-span-2",
     thumbnail: "/exp3.svg",
