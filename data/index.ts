@@ -54,7 +54,7 @@ export const gridItems = [
     title: "Currently implementing AI into my different areas of expertise ",
     description: "The Inside Scoop",
     className: "md:col-span-3 md:row-span-2",
-    imgClassName: "absolute right-0 bottom-0 md:w-[500px] w-[350px] md:h-[400px] h-[250px]", 
+    imgClassName: "absolute right-0 bottom-0 md:w-[500px] w-[350px] md:h-[400px] h-[250px] sm: h-[140px]", 
     titleClassName: "justify-center md:justify-start lg:justify-center",
     img: "/b5.png",
     spareImg: "/grid.svg",
@@ -75,11 +75,11 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "Portfolio Website",
-    des: "A portfolio built with Next.js 14,Tailwind Css,showcasing skills in development, product marketing, and design.",
-    img: "/p1.png",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", ],
-    link: "oyekolaobajuwon.vercel.app", // Replace with your real URL
+    title: "9jaSchoolsHub Product Roadmap",
+    des: "A roadmap outlining features, timelines, and updates for 9jaSchoolsHub.",
+    img: "/p4.png",
+    iconLists: ["/notion.jpg", "/google.jpg"],
+    link: "https://cobalt-ball-550.notion.site/9ja-School-Hub-Product-Roadmap-188808a6964880bd83e9ceb270c22b7f", // Replace with your Notion roadmap
   },
   {
     id: 2,
@@ -99,45 +99,35 @@ export const projects = [
   },
   {
     id: 4,
-    title: "9jaSchoolsHub Product Roadmap",
-    des: "A roadmap outlining features, timelines, and updates for 9jaSchoolsHub.",
-    img: "/p4.png",
-    iconLists: ["/notion.jpg", "/google.jpg"],
-    link: "https://cobalt-ball-550.notion.site/9ja-School-Hub-Product-Roadmap-188808a6964880bd83e9ceb270c22b7f", // Replace with your Notion roadmap
+    title: "Portfolio Website",
+    des: "A portfolio built with Next.js 14,Tailwind Css,showcasing skills in development, product marketing, and design.",
+    img: "/p1.png",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", ],
+    link: "https://oyekolaobajuwon.vercel.app/", // Replace with your real URL
   },
+
 ];
 
 
 export const testimonials = [
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
+      "Juwon is a brilliant individual. I had the opportunity to work with him on 9jaSchoolsHub, and I was truly impressed by his strong work ethic, excellent collaboration skills, and outstanding team spirit.",
+    name: "Olorunkiya Samuel",
+    title: "Co-Product Manager(9jaSchoolsHub) ",
   },
+
+  {
+   quote:
+     "Obajuwon's attention to detail in both design and development is impressive. He created a sleek and functional website that elevated our brand’s online presence.",
+   name: "Tolu Adebayo",
+    title: "Creative Director, jp media",
+},
   {
     quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
-  },
-  {
-    quote:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    name: "Michael Johnson",
-    title: "Director of AlphaStream Technologies",
+      "I needed branding and marketing support for my startup, and Obajuwon delivered beyond expectations. His work on positioning and messaging gave us a competitive edge.",
+    name: "Sandra Eze",
+    title: "Founder, Digital Upstart",
   },
 ];
 
@@ -177,7 +167,7 @@ export const testimonials = [
 export const workExperience = [
   {
     id: 1,
-    title: "Assistant Product Manager - Swquads",
+    title: "Assistant Product Manager|Product Marketing Manager - Swqads",
     desc: "Managing product development and marketing strategies, ensuring seamless collaboration between teams.",
     className: "md:col-span-2",
     thumbnail: "/exp3.svg",
@@ -191,7 +181,7 @@ export const workExperience = [
   },
   {
     id: 3,
-    title: "Media Intern - Unique Style Hub",
+    title: " Digital Marketing Intern - Unique Style Hub",
     desc: "Created graphics, videos, and content calendars for a fashion-focused brand.",
     className: "md:col-span-2",
     thumbnail: "/exp2.svg",
@@ -203,6 +193,23 @@ export const workExperience = [
     className: "md:col-span-2",
     thumbnail: "/exp2.svg",
   },
+ 
+{
+
+  id: 5,
+  title: "Coding Trainee - ESSYP Technologies",
+  desc: "Built a strong foundation in software development, learning core programming concepts and best practices.",
+  className: "md:col-span-2",
+  thumbnail: "/exp1.svg",
+},
+{
+  id: 6,
+  title: "Freelance Web Developer",
+  desc: "Developing responsive and high-performance websites for clients, focusing on user experience and functionality.",
+  className: "md:col-span-2",
+  thumbnail: "/exp4.svg",
+},
+  
 ];
 
 
