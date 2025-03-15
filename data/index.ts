@@ -227,6 +227,6 @@ export const socialMedia = [
   {
     id: 3,
     img: "/link.svg",
-    link: "https://www.linkedin.com/in/abdulsalam-oyekola-017b67346/", 
+    link: "https://www.linkedin.com/in/obajuwon-oyekola-017b67346", 
   },
 ];
