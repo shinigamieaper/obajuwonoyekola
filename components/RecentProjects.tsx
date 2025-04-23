@@ -6,7 +6,7 @@ import { PinContainer } from "./ui/Pin";
 
 const RecentProjects = () => {
   return (
-    <div className="py-20">
+    <section id="projects" className="py-20">
       <h1 className="heading">
         A small selection of{" "}
         <span className="text-purple">recent projects</span>
@@ -61,11 +61,10 @@ const RecentProjects = () => {
                   ))}
                 </div>
 
-                {/* ✅ Corrected "Check Live Site" Button */}
                 <a
-                  href={item.link} // Use the correct project link
-                  target="_blank" // Opens in new tab
-                  rel="noopener noreferrer" // Security best practice
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex justify-center items-center"
                 >
                   <p className="flex lg:text-xl md:text-xs text-sm text-purple">
@@ -78,7 +77,7 @@ const RecentProjects = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
