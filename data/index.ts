@@ -8,15 +8,15 @@ export const navItems = [
 ];
 
 export const gridItems = [
-  {
-    id: 1,
-    title: "I prioritize Clear communication and collaboration ",
-    description: "",
-    className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
-    imgClassName: "w-full h-full",
-    titleClassName: "justify-end",
-    img: "/b1.png",
-    spareImg: "",
+  
+    {
+  id: 1,
+  title: "After years of developing my expertise in both marketing and development, I realized that businesses needed something more: clear strategies linked to real financial outcomes. Today, I work with small and medium-sized enterprises (SMEs) to help them build brands that connect with their audience, create campaigns that perform effectively, and produce content that drives sales.",
+  description: "",
+  className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[70vh]", // slightly taller
+  titleClassName: "justify-center items-center text-center", // center the text
+
+
   },
   {
     id: 2,

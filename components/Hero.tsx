@@ -37,10 +37,12 @@ const Hero = () => {
             Blending development with marketing for impact
           </p>
 
-          <TextGenerateEffect
-            words="Combining Development And Marketing To Create Solutions That Scale."
-            className="text-center text-[40px] md:text-5xl lg:text-6xl"
-          />
+        <TextGenerateEffect
+  words="Helping Businesses Grow with Strategic  Marketing , Storytelling , and Performance Campaigns ."
+  className="text-center text-[40px] md:text-5xl lg:text-6xl"
+  highlightWords={["Grow", "Performance", "Campaigns", "Strategic", "Marketing", "Storytelling"]}
+/>
+
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
             I&apos;m Oyekola Obajuwon A Product & Digital Marketing Manager and a Next.js Developer.
