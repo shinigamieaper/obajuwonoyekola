@@ -1,5 +1,5 @@
-import { link } from "fs";
 
+"use client";
 
 export const navItems = [
   { name: "About", link: "#about" },
