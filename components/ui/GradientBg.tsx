@@ -43,22 +43,17 @@ export const BackgroundGradientAnimation = ({
   const [tgY, setTgY] = useState(0);
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      document.body.style.setProperty(
-        "--gradient-background-start",
-        gradientBackgroundStart
-      );
-      document.body.style.setProperty(
-        "--gradient-background-end",
-        gradientBackgroundEnd
-      );
-      document.body.style.setProperty("--first-color", firstColor);
-      document.body.style.setProperty("--second-color", secondColor);
-      document.body.style.setProperty("--third-color", thirdColor);
-      document.body.style.setProperty("--fourth-color", fourthColor);
-      document.body.style.setProperty("--fifth-color", fifthColor);
-      document.body.style.setProperty("--pointer-color", pointerColor);
-      document.body.style.setProperty("--size", size);
-      document.body.style.setProperty("--blending-value", blendingValue);
+      const body = document.body;
+      body.style.setProperty("--gradient-background-start", gradientBackgroundStart);
+      body.style.setProperty("--gradient-background-end", gradientBackgroundEnd);
+      body.style.setProperty("--first-color", firstColor);
+      body.style.setProperty("--second-color", secondColor);
+      body.style.setProperty("--third-color", thirdColor);
+      body.style.setProperty("--fourth-color", fourthColor);
+      body.style.setProperty("--fifth-color", fifthColor);
+      body.style.setProperty("--pointer-color", pointerColor);
+      body.style.setProperty("--size", size);
+      body.style.setProperty("--blending-value", blendingValue);
     }
   }, [
     gradientBackgroundStart,
@@ -98,7 +93,9 @@ export const BackgroundGradientAnimation = ({
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+    if (typeof window !== 'undefined') {
+      setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+    }
   }, []);
 
   useEffect(() => {
