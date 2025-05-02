@@ -1,21 +1,21 @@
 import { link } from "fs";
 
+
 export const navItems = [
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
+  { name: "Services", link: "#services" },
   { name: "Testimonials", link: "#testimonials" },
   { name: "Contact", link: "#contact" },
 ];
 
 export const gridItems = [
-  
-    {
-  id: 1,
-  title: "After years of developing my expertise in both marketing and development, I realized that businesses needed something more: clear strategies linked to real financial outcomes. Today, I work with small and medium-sized enterprises (SMEs) to help them build brands that connect with their audience, create campaigns that perform effectively, and produce content that drives sales.",
-  description: "",
-  className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[70vh]", // slightly taller
-  titleClassName: "justify-center items-center text-center", // center the text
-
+  {
+    id: 1,
+    title: "After years of developing my expertise in both marketing and development, I realized that businesses needed something more: clear strategies linked to real financial outcomes.",
+    description: " About me",
+    className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[50vh]",
+   titleClassName: "text-left "
 
   },
   {
@@ -70,6 +70,55 @@ export const gridItems = [
     img: "",
     spareImg: "",
   },
+];
+
+// Services
+export const services = [
+  {
+    id: 1,
+    title: "UI/UX Design",
+    description: "Designing intuitive and engaging interfaces.",
+    expandedContent: `I create user interfaces that are not just visually appealing but also strategically designed for usability and conversion. My process includes:
+
+- In-depth user research
+- Wireframing & prototyping
+- High-fidelity design
+- Usability testing
+
+Let's transform your ideas into compelling digital experiences.`,
+    image: "/p1.png",
+    iconLists: ["/next.svg", "/tail.svg"]
+  },
+  {
+    id: 2,
+    title: "Web Development",
+    description: "Building responsive and performant web apps.",
+    expandedContent: `I develop modern web applications using cutting-edge technologies. My approach includes:
+
+- Responsive design
+- Performance optimization
+- SEO best practices
+- Cross-browser compatibility
+
+From landing pages to complex web applications, I deliver scalable solutions.`,
+    image: "/p2.png",
+    iconLists: ["/next.svg", "/ts.svg"]
+  },
+  {
+    id: 3,
+    title: "Product Strategy",
+    description: "Crafting data-driven product roadmaps.",
+    expandedContent: `I help transform business ideas into successful digital products:
+
+- Market research
+- User persona development
+- Feature prioritization
+- Growth strategy
+
+Let's turn your vision into a market-ready product.`,
+    image: "/p3.png",
+    iconLists: ["/git.svg", "/link.svg"]
+  }
 ];
 
 export const projects = [
