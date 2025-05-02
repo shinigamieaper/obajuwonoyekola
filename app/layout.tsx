@@ -1,6 +1,7 @@
 import { ThemeProvider } from "./provider"; // Only import from your custom provider
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -19,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': 
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
