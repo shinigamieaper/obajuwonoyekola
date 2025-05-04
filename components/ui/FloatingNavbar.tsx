@@ -30,8 +30,8 @@ export const FloatingNav = ({
     if (typeof current === "number") {
       let direction = current! - scrollYProgress.getPrevious()!;
 
-      if (scrollYProgress.get() < 0.05) {
-        // also set true for the initial state
+      if (scrollYProgress.get() < 0.1) {
+        // Always show navbar when near the top of the page
         setVisible(true);
       } else {
         if (direction < 0) {

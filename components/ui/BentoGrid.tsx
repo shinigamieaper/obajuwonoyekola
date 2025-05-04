@@ -1,6 +1,9 @@
 "use client";
-import { useState } from "react";
+import React from "react";
+import { IconType } from "react-icons";
+import { FaGoogle, FaHubspot } from "react-icons/fa";
 import { IoCopyOutline } from "react-icons/io5";
+import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import dynamic from "next/dynamic";
 
@@ -53,10 +56,44 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript"];
-  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
+  const certificationIcons: { [key: string]: IconType } = {
+    "Google Digital Garage": FaGoogle,
+    "HubSpot Marketing": FaHubspot
+  };
+  const leftLists = ["Google Digital Garage", "HubSpot Marketing"];
 
   const [copied, setCopied] = useState(false);
+
+  const [marketingExperience, setMarketingExperience] = useState({
+    years: 4,
+    months: 3,
+    days: 15,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const startDate = new Date('2019-12-15');
+    const updateExperience = () => {
+      const now = new Date();
+      const diff = now.getTime() - startDate.getTime();
+      
+      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+      const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      setMarketingExperience({ years, months, days, hours, minutes, seconds });
+    };
+
+    updateExperience();
+    const timer = setInterval(updateExperience, 1000); // Update every second
+
+    return () => clearInterval(timer);
+  }, []);
 
   const defaultOptions = {
     loop: copied,
@@ -159,34 +196,45 @@ export const BentoGridItem = ({
   </>
 )}
 
-
           {id === 2 && <GridGlobe />}
+
+          {id === 5 && (
+            <div className="flex flex-col justify-center space-y-4 w-1/2 h-full p-4">
+              {[
+                { label: 'Years', value: marketingExperience.years },
+                { label: 'Months', value: marketingExperience.months },
+                { label: 'Days', value: marketingExperience.days },
+                { label: 'Hours', value: marketingExperience.hours },
+                { label: 'Minutes', value: marketingExperience.minutes },
+                { label: 'Seconds', value: marketingExperience.seconds }
+              ].map(({ label, value }) => (
+                <div 
+                  key={label} 
+                  className="flex items-center space-x-2"
+                >
+                  <span className="text-lg font-bold text-white w-16">{value}</span>
+                  <p className="text-xs text-gray-400">{label}</p>
+                </div>
+              ))}
+            </div>
+          )}
 
           {id === 3 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
-              <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
-                {leftLists.map((item, i) => (
-                  <span
-                    key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
-                  >
-                    {item}
-                  </span>
-                ))}
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
-              </div>
-              <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
-                {rightLists.map((item, i) => (
-                  <span
-                    key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
-                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
-                  >
-                    {item}
-                  </span>
-                ))}
+              <div className="flex flex-col gap-4 md:gap-4 lg:gap-8 px-4">
+                {leftLists.map((item, i) => {
+                  const Icon = certificationIcons[item];
+                  return (
+                    <div
+                      key={i}
+                      className="flex items-center space-x-3 lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
+                      lg:opacity-100 rounded-lg bg-[#10132E] w-full"
+                    >
+                      {Icon && <Icon className="w-6 h-6 mr-2 text-white" />}
+                      <span className="text-white">{item}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}

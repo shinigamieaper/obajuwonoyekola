@@ -4,12 +4,12 @@ import { FaLocationArrow } from "react-icons/fa6";
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
 
-const RecentProjects = () => {
+const CaseStudies = () => {
   return (
-    <section id="projects" className="py-20">
+    <section id="case-studies" className="py-20">
       <h1 className="heading">
-        A small selection of{" "}
-        <span className="text-purple">recent projects</span>
+        Strategic{" "}
+        <span className="text-purple">Marketing Case Studies</span>
       </h1>
       <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10">
         {projects.map((item) => (
@@ -17,7 +17,7 @@ const RecentProjects = () => {
             className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
             key={item.id}
           >
-            <PinContainer title={item.title} href={item.link}>
+            <PinContainer title={`Case Study: ${item.title}`} href={item.link}>
               <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
                 <div
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl"
@@ -32,19 +32,21 @@ const RecentProjects = () => {
                 />
               </div>
 
-              <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
+              <h2 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1 text-purple">
                 {item.title}
-              </h1>
+              </h2>
 
-              <p
-                className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2"
-                style={{
-                  color: "#BEC1DD",
-                  margin: "1vh 0",
-                }}
-              >
-                {item.des}
-              </p>
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Challenge</h3>
+                <p
+                  className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2"
+                  style={{
+                    color: "#BEC1DD",
+                  }}
+                >
+                  {item.des}
+                </p>
+              </div>
 
               <div className="flex items-center justify-between mt-7 mb-3">
                 <div className="flex items-center">
@@ -56,7 +58,7 @@ const RecentProjects = () => {
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
-                      <img src={icon} alt="icon5" className="p-2" />
+                      <img src={icon} alt="tool icon" className="p-2" />
                     </div>
                   ))}
                 </div>
@@ -68,7 +70,7 @@ const RecentProjects = () => {
                   className="flex justify-center items-center"
                 >
                   <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                    Check Live Site
+                    View Case Study
                   </p>
                   <FaLocationArrow className="ms-3" color="#CBACF9" />
                 </a>
@@ -81,4 +83,4 @@ const RecentProjects = () => {
   );
 };
 
-export default RecentProjects;
+export default CaseStudies;

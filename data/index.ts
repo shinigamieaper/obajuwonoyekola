@@ -3,7 +3,7 @@
 
 export const navItems = [
   { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
+  { name: "Case-Studies", link: "#case-studies" },
   { name: "Services", link: "#services" },
   { name: "Testimonials", link: "#testimonials" },
   { name: "Contact", link: "#contact" },
@@ -30,8 +30,8 @@ export const gridItems = [
   },
   {
     id: 3,
-    title: "My tech stack",
-    description: "I constantly try to improve",
+    title: "Certifications",
+    description: "Professional Achievements",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-center",
@@ -51,12 +51,12 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently implementing AI into my different areas of expertise ",
-    description: "The Inside Scoop",
-    className: "md:col-span-3 md:row-span-2",
-    imgClassName: "absolute right-0 bottom-0 md:w-[500px] w-[350px] md:h-[400px] h-[250px] sm: h-[140px]", 
-    titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "/b5.png",
+    title: "I've Been A Digital Marketer For",
+    description: "Digital Marketing Experience",
+    className: "md:col-span-3 md:row-span-2 relative overflow-hidden",
+    imgClassName: "absolute inset-0 w-full h-full object-cover opacity-50 z-[0] transform scale-140 blur-[1px] sm:scale-[100%] sm:right-[-40%] md:scale-[120%] md:right-[-20%] lg:scale-[120%]",
+    titleClassName: "relative z-10 ",
+    img: "/profile.png",
     spareImg: "/grid.svg",
   },
     
@@ -120,6 +120,31 @@ Let's turn your vision into a market-ready product.`,
     iconLists: ["/git.svg", "/link.svg"]
   }
 ];
+export const portfolioItems = [
+  {
+    title: "Meta Ads Campaign",
+    image: "/path/to/meta-ads-image.jpg",
+    category: "PPC Ads",
+    performance: "CTR: 8.9%",
+    className: "absolute top-10 left-[20%] rotate-[-5deg]",
+  },
+  {
+    title: "Perfume Brand Identity",
+    image: "/path/to/perfume-branding.jpg",
+    category: "Branding",
+    performance: "Top Performing",
+    className: "absolute top-40 left-[25%] rotate-[-7deg]",
+  },
+  {
+    title: "TikTok Promo Design",
+    image: "/path/to/tiktok-promo.jpg",
+    category: "Social Media",
+    performance: "Viral Reach",
+    className: "absolute top-5 left-[40%] rotate-[8deg]",
+  },
+  // Add more portfolio items as needed
+];
+
 
 export const projects = [
   {
