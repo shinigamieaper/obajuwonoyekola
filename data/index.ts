@@ -183,13 +183,7 @@ export const projects = [
 ];
 
 
-export const leftLists = [
-  'Next.js', 'TypeScript', 'React.js', 'Tailwind CSS'
-];
 
-export const rightLists = [
-  'Node.js', 'Express.js', 'MongoDB', 'Git/GitHub'
-];
 
 export const testimonials = [
   {

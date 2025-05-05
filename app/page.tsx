@@ -7,7 +7,7 @@ import Grid from "@/components/Grid";
 import Services from "@/components/Services";
 import Footer from "@/components/Footer";
 import Clients from "@/components/Clients";
-import Approach from "@/components/Approach";
+
 import Experience from "@/components/Experience";
 import CaseStudies from "@/components/Casestudies";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
@@ -24,8 +24,8 @@ const Home = () => {
         <CaseStudies />
         <Clients/>
         <Experience />
-        <Approach /> 
         <Footer/>
+       
       </div>
     </main>
   );

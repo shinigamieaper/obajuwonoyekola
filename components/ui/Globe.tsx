@@ -56,11 +56,12 @@ export type GlobeConfig = {
 interface WorldProps {
   globeConfig: GlobeConfig;
   data: Position[];
+  countriesData: any; // geojson type
 }
 
 let numbersOfRings = [0];
 
-export function Globe({ globeConfig, data }: WorldProps) {
+export function Globe({ globeConfig, data, countriesData }: WorldProps) {
   const [globeData, setGlobeData] = useState<
     | {
         size: number;
@@ -96,7 +97,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       _buildData();
       _buildMaterial();
     }
-  }, [globeRef.current]);
+  }, [data, globeConfig]);
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
@@ -135,8 +136,12 @@ export function Globe({ globeConfig, data }: WorldProps) {
       });
     }
 
+    // filter out points with invalid lat/lng
+    const validPoints = points.filter(
+      (p) => [p.lat, p.lng].every((v) => typeof v === 'number' && isFinite(v))
+    );
     // remove duplicates for same lat and lng
-    const filteredPoints = points.filter(
+    const filteredPoints = validPoints.filter(
       (v, i, a) =>
         a.findIndex((v2) =>
           ["lat", "lng"].every(
@@ -151,7 +156,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
   useEffect(() => {
     if (globeRef.current && globeData) {
       globeRef.current
-        .hexPolygonsData(countries.features)
+        .hexPolygonsData(countriesData.features)
         .hexPolygonResolution(3)
         .hexPolygonMargin(0.7)
         .showAtmosphere(defaultProps.showAtmosphere)
@@ -162,7 +167,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
         });
       startAnimation();
     }
-  }, [globeData]);
+  }, [globeData, countriesData, globeConfig]);
 
   const startAnimation = () => {
     if (!globeRef.current || !globeData) return;
@@ -221,7 +226,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
     return () => {
       clearInterval(interval);
     };
-  }, [globeRef.current, globeData]);
+  }, [globeData, data]);
 
   return (
     <>
@@ -243,7 +248,7 @@ export function WebGLRendererConfig() {
 }
 
 export function World(props: WorldProps) {
-  const { globeConfig } = props;
+  const { globeConfig, data, countriesData } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
   return (
@@ -263,14 +268,15 @@ export function World(props: WorldProps) {
         position={new Vector3(-200, 500, 200)}
         intensity={0.8}
       />
-      <Globe {...props} />
+      <Globe globeConfig={globeConfig} data={data} countriesData={countriesData} />
       <OrbitControls
-        enablePan={false}
-        enableZoom={false}
+        enablePan={true}
+        enableZoom={true}
+        enableRotate={true}
         minDistance={cameraZ}
         maxDistance={cameraZ}
-        autoRotateSpeed={1}
-        autoRotate={true}
+        autoRotate={globeConfig.autoRotate}
+        autoRotateSpeed={globeConfig.autoRotateSpeed || 1}
         minPolarAngle={Math.PI / 3.5}
         maxPolarAngle={Math.PI - Math.PI / 3}
       />
