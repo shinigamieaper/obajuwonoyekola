@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { IoCopyOutline } from "react-icons/io5";
 import { FaHubspot, FaGoogle } from "react-icons/fa";
 import { useInView } from "react-intersection-observer";
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
 import MagicButton from "../MagicButton";
+import { MarketingExperienceCounter } from "@/components/MarketingExperienceCounter";
 
 import animationData from "@/data/confetti.json";
 import { TextGenerateEffect } from "./TextGenerateEffect";
@@ -185,6 +186,18 @@ const leftLists = [
                 <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
               
               </div>
+            </div>
+          )}
+
+          {id === 5 && (
+            <div className="absolute bottom-0 left-0 w-full flex flex-row justify-between items-center p-4">
+              <MarketingExperienceCounter 
+                className="flex flex-row items-center gap-1 lg:gap-4"
+                itemClassName="flex flex-col items-center "
+                valueClassName=" sm:text-xl lg:text-4xl font-bold text-white"
+                labelClassName="text-sm text-gray-400 ml-1"
+              />
+             
             </div>
           )}
 

@@ -10,6 +10,7 @@ import Clients from "@/components/Clients";
 
 import Experience from "@/components/Experience";
 import CaseStudies from "@/components/Casestudies";
+import PortfolioSection from "@/components/PortfolioSection";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 
 
@@ -20,9 +21,11 @@ const Home = () => {
         <FloatingNav navItems={navItems} />
         <Hero />
         <Grid />
+        <PortfolioSection />
         <Services />
         <CaseStudies />
         <Clients/>
+        
         <Experience />
         <Footer/>
        
