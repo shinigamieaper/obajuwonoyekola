@@ -3,6 +3,7 @@
 import { FaLocationArrow } from "react-icons/fa6";
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
+import Image from "next/image";
 
 const CaseStudies = () => {
   return (
@@ -29,9 +30,9 @@ const CaseStudies = () => {
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl z-0"
                   style={{ backgroundColor: "#13162D" }}
                 >
-                  <img src="/bg.png" alt="bgimg" width={500} height={300} className="w-full h-full" />
+                  <Image src="/bg.png" alt="bgimg" width={500} height={300} className="w-full h-full" />
                 </div>
-                <img
+                <Image
                   src={item.img}
                   alt="cover"
                   width={300}
@@ -66,7 +67,7 @@ const CaseStudies = () => {
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
-                      <img src={icon} alt="tool icon" width={32} height={32} className="p-2" />
+                      <Image src={icon} alt="tool icon" width={32} height={32} className="p-2" />
                     </div>
                   ))}
                 </div>
