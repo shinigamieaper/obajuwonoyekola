@@ -18,6 +18,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+      heading: ["Unbounded", "sans-serif"],
+      body: ["Manrope", "sans-serif"],
+      accent: ["DM Serif Display", "serif"]
+    },
       container: {
         center: true,
         padding: "2rem",
@@ -75,6 +80,11 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -88,6 +98,9 @@ const config: Config = {
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
+        },
+        "scroll": {
+          to: { transform: "translate(calc(-50% - 0.5rem))" },
         },
         spotlight: {
           "0%": {
@@ -129,7 +142,7 @@ const config: Config = {
             transform: "rotate(360deg)",
           },
         },
-        moveVertical: {
+        "moveVertical": {
           "0%": {
             transform: "translateY(-50%)",
           },
@@ -140,24 +153,18 @@ const config: Config = {
             transform: "translateY(-50%)",
           },
         },
-        scroll: {
-          to: {
-            transform: "translate(calc(-50% - 0.5rem))",
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        spotlight: "spotlight 2s ease .75s 1 forwards",
-        shimmer: "shimmer 2s linear infinite",
-        first: "moveVertical 30s ease infinite",
-        second: "moveInCircle 20s reverse infinite",
-        third: "moveInCircle 40s linear infinite",
-        fourth: "moveHorizontal 40s ease infinite",
-        fifth: "moveInCircle 20s ease infinite",
-        scroll:
-          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        "scroll": "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        "spotlight": "spotlight 2s ease .75s 1 forwards",
+        "shimmer": "shimmer 2s linear infinite",
+        "first": "moveVertical 30s ease infinite",
+        "second": "moveInCircle 20s reverse infinite",
+        "third": "moveInCircle 40s linear infinite",
+        "fourth": "moveHorizontal 40s ease infinite",
+        "fifth": "moveInCircle 20s ease infinite",
       },
     },
   },

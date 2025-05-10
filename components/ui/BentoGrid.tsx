@@ -126,7 +126,7 @@ const leftLists = [
 
         {id === 6 && (
           <BackgroundGradientAnimation>
-            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div>
+            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl font-heading "></div>
           </BackgroundGradientAnimation>
         )}
 
@@ -137,18 +137,19 @@ const leftLists = [
           )}
         >
           {id === 1 ? (
-  <div ref={ref} className="z-10 space-y-2 p-5">
+  <div ref={ref} className="z-10 space-y-2 p-1">
     {inView && (
       <>
-        <div className="text-[#C1C2D3] text-sm lg:text-base font-extralight z">
+        <div className="text-[#C1C2D3] text-sm lg:text-xl font-extralight font-body  p-1">
           <TextGenerateEffect
             words={typeof description === "string" ? description : ""}
+            highlightWords={['Marketing,','Marketing',  'Development,', 'Strategy','Design,','Community','Empowered.','True','Seen,','Understood,','Storyteller','Strategist' ,'Dream','Community.','Storytelling', 'Data,','Empathy,','Problem-solving', 'Creativity,' , 'Clarity,' ,'Freelancer,']}
           />
         </div>
         <div className="text-white text-lg lg:text-3xl font-bold ">
           <TextGenerateEffect
             words={typeof title === "string" ? title : ""}
-            highlightWords={['marketing']}
+           
           />
         </div>
       </>
@@ -156,10 +157,10 @@ const leftLists = [
   </div>
 ) : (
   <>
-    <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
+    <div className="font-body font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
       {description}
     </div>
-    <div className="font-sans text-lg lg:text-3xl max-w-96 font-bold z-10">
+    <div className="font-heading text-lg lg:text-3xl max-w-96 font-bold z-10">
       {title}
     </div>
   </>

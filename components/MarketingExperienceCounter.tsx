@@ -20,11 +20,11 @@ interface MarketingExperienceCounterProps {
 }
 
 export const MarketingExperienceCounter: React.FC<MarketingExperienceCounterProps> = ({
-  startDate = '2019-12-15',
+  startDate = '2021-03-15',
   className = 'flex flex-wrap justify-center gap-4',
   itemClassName = 'flex items-center space-x-3',
-  valueClassName = 'text-xl font-bold text-white w-12 text-right',
-  labelClassName = 'text-xs text-gray-400'
+  valueClassName = 'font-accent text-xl font-bold text-white w-12 text-right',
+  labelClassName = 'font-body text-xs text-gray-400'
 }) => {
   const [marketingExperience, setMarketingExperience] = useState<MarketingExperience>({
     years: 0,

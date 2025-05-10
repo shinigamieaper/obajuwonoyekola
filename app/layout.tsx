@@ -10,6 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Obajuwon's portfolio",
   description: "Modern Marketing & Development Portfolio",
+
 };
 
 export default function RootLayout({
@@ -20,6 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+      
+        <link rel="icon" href="/1.png" sizes="any" />
+   
         <Script
           id="gtm-script"
           strategy="afterInteractive"

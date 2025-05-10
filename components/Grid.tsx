@@ -3,11 +3,12 @@ import { useMemo } from "react";
 import { gridItems as importedGridItems } from "@/data";
 import { BentoGrid, BentoGridItem } from "./ui/BentoGrid";
 
+
 const Grid = () => {
   const gridItems = useMemo(() => importedGridItems, []);
   return (
     <section id="about">
-      <BentoGrid className="w-full py-20">
+      <BentoGrid className="w-full py-16">
         {gridItems.map((item) => (
           <BentoGridItem
             id={item.id}

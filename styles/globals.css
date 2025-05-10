@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.expertise-faded-icons img,
+.expertise-faded-icons svg {
+  filter: grayscale(100%) opacity(50%);
+  transition: filter 0.3s ease;
+}
+
+.expertise-faded-icons img:hover,
+.expertise-faded-icons svg:hover {
+  filter: grayscale(0%) opacity(100%);
+}

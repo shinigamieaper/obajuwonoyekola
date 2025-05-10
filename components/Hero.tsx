@@ -6,8 +6,11 @@ import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 const Hero = () => {
+
   return (
-    <div className="pb-20 pt-36">
+    <section id="hero" className="py-20">
+
+    <div className="py-20 pt-36">
       {/* Spotlights for visual effect */}
       <div>
         <Spotlight
@@ -23,30 +26,30 @@ const Hero = () => {
 
       {/* Background grid */}
       <div
-        className="h-screen w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2]
-       absolute top-0 left-0 flex items-center justify-center"
+        className="absolute inset-0 w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2]
+        pointer-events-none z-0"
       >
         <div
-          className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100
-         bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+          className="absolute inset-0 flex items-center justify-center dark:bg-black-100
+          bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] pointer-events-none"
         />
       </div>
 
-      <div className="flex justify-center relative my-20 z-10">
+      <div className="flex justify-center relative z-10 pt-20">
         <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-          <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
+          <p className="font-body uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
             Blending development with marketing for impact
           </p>
 
         <TextGenerateEffect
-  words="Helping Businesses Grow with Strategic  Marketing , Storytelling , and Performance Campaigns ."
-  className="text-center text-[40px] md:text-5xl lg:text-6xl"
-  highlightWords={["Grow", "Performance", "Campaigns", "Strategic", "Marketing", "Storytelling"]}
+  words="Strategic Marketing That Builds Communities and Tells Compelling Stories"
+  className="font-heading text-center text-[35px] md:text-5xl lg:text-5xl"
+  highlightWords={[ "Strategic", "Communities", "Compelling" ,"Stories"  ]}
 />
 
 
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            I&apos;m Oyekola Obajuwon A Product & Digital Marketing Manager and a Next.js Developer.
+          <p className="font-body text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
+            I&apos;m Juwon A Digital Marketing Specialist With a Strong Background in  Design, and Development based in Lagos Nigeria.
           </p>
 
           <a href="#about">
@@ -59,6 +62,7 @@ const Hero = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 
