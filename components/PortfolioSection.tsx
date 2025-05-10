@@ -9,6 +9,7 @@ import {
 import { motion } from "framer-motion";
 import MagicButton from "./MagicButton";
 import { FaSync as SyncIcon } from "react-icons/fa";
+import Image from "next/image";
 
 export default function PortfolioSection() {
   const [resetTrigger, setResetTrigger] = useState(0);
@@ -45,9 +46,11 @@ export default function PortfolioSection() {
             </p>
             {portfolioItems.map((item, index) => (
               <DraggableCardBody key={index} className={item.className}>
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
+                  width={256}
+                  height={260}
                   className="pointer-events-none relative z-10 h-65 w-64 object-cover rounded-md"
                 />
                 <div className="mt-4 text-center space-y-1">
