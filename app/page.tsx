@@ -5,7 +5,7 @@ import { navItems } from "@/data";
 import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";
 import Services from "@/components/Services";
-import Footer from "@/components/Footer";
+
 import dynamic from 'next/dynamic';
 import MarketingLeadForm from "@/components/ui/MarketingLeadForm";
 import Expertise from "@/components/Expertise";
@@ -30,7 +30,6 @@ const Home = () => {
         <Clients/>
         <Experience />
         <MarketingLeadForm />
-       
       </div>
     </main>
   );
