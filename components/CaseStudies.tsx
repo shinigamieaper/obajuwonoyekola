@@ -21,11 +21,12 @@ const CaseStudies = () => {
       <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10 ">
         {projects.map((item) => (
           <div
-            className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
+            className="lg:min-h-[32.5rem] h-[28rem] flex items-center justify-center sm:w-96 w-[80vw]"
             key={item.id}
           >
             <PinContainer title={`visit`} href={item.link}>
-              <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[28vh] lg:h-[40vh] pb-4 mb-10">
+              <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden 
+              h-[25vh] lg:h-[43vh] pb-4 mb-10">
                 <div
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl z-0"
                   style={{ backgroundColor: "#13162D" }}
@@ -36,8 +37,8 @@ const CaseStudies = () => {
                   src={item.img}
                   alt="cover"
                   width={300}
-                  height={200}
-                  className="z-122 absolute bottom-0 object-contain"
+                  height={300}
+                  className="z-122 absolute bottom-0 object-contain "
                 />
               </div>
 
