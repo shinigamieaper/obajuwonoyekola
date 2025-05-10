@@ -9,6 +9,7 @@ import { FaLocationArrow } from "react-icons/fa6";
 
 import { socialMedia } from "@/data";
 import MagicButton from "../MagicButton";
+import Image from "next/image";
 
 export default function MarketingLeadForm() {
   // Add heading similar to Footer component
@@ -164,7 +165,7 @@ export default function MarketingLeadForm() {
                       <div
                         className="w-12 h-12 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300"
                       >
-                        <img src={info.img} alt="icons" width={24} height={24} />
+                        <Image src={info.img} alt="icons" width={24} height={24} />
                       </div>
                     </a>
                   ))}
@@ -180,9 +181,10 @@ export default function MarketingLeadForm() {
   return (
     <footer className="w-full pt-20 pb-10 bg-gradient-to-r from-indigo-500 to-purple" id="contact">
       <div className="w-full absolute left-0 -bottom-72 min-h-96 z-0">
-        <img
+        <Image
           src="/footer-grid.svg"
           alt="grid"
+          fill
           className="w-full h-full opacity-30"
         />
       </div>
@@ -304,7 +306,7 @@ export default function MarketingLeadForm() {
                     <div
                       className="w-12 h-12 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300"
                     >
-                      <img src={info.img} alt="icons" width={24} height={24} />
+                      <Image src={info.img} alt="icons" width={24} height={24} />
                     </div>
                   </a>
                 ))}
