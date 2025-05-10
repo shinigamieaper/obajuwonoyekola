@@ -25,10 +25,10 @@ const CaseStudies = () => {
             key={item.id}
           >
             <PinContainer title={`visit`} href={item.link}>
-              <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden 
-              h-[25vh] lg:h-[43vh] pb-4 mb-10">
+              <div className="relative flex sm:w-96 w-[80vw] overflow-hidden border-2 border-blue-500/30 rounded-3xl
+              h-[25vh] lg:h-[40vh] pb-4 mb-90">
                 <div
-                  className="relative w-full h-full overflow-hidden lg:rounded-3xl z-0"
+                  className="relative w-full h-full overflow-hidden lg:rounded-3xl z-0 bg-cover bg-center"
                   style={{ backgroundColor: "#13162D" }}
                 >
                   <Image src="/bg.png" alt="bgimg" width={500} height={300} className="w-full h-full" />
@@ -37,8 +37,8 @@ const CaseStudies = () => {
                   src={item.img}
                   alt="cover"
                   width={300}
-                  height={300}
-                  className="z-122 absolute bottom-0 object-contain "
+                  height={200}
+                  className="z-122 absolute inset-0 w-full h-full object-cover"
                 />
               </div>
 
