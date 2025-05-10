@@ -49,7 +49,7 @@ const Hero = () => {
 
 
           <p className="font-body text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            I&apos;m Juwon A Digital Marketing Specialist With a Strong Background in  Design, and Development based in Lagos Nigeria.
+            I&apos;m Juwon A Full Stack Digital Marketer specializing in Marketing, Design, and Development based in Lagos Nigeria.
           </p>
 
           <a href="#about">

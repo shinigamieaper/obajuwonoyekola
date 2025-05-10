@@ -91,7 +91,7 @@ export const services = [
   {
     id: 1,
     title: "Social Media Marketing That Builds Community",
-    description: "Oyekola creates strategies and content that grow engaged communities - not just follower counts.",
+    description: "Juwon creates strategies and content that grow engaged communities - not just follower counts.",
     expandedContent: {
       approach: [
         "Flywheel Strategy: He treats community as a growth engine — not an afterthought.",
@@ -116,7 +116,7 @@ export const services = [
   {
     id: 2,
     title: "Content Writing That Connects",
-    description: "From blogs to captions, Oyekola writes with clarity, tone, and purpose , helping brands sound more human.",
+    description: "From blogs to captions, Juwon writes with clarity, tone, and purpose , helping brands sound more human.",
     expandedContent: {
       approach: [
         "Voice Matching: Every word aligns with your brand tone — casual, formal, sharp, or warm.",
@@ -294,14 +294,14 @@ export const portfolioItems = [
   
    {
     title: "Perfume Brand page",
-    image: "codedpage.png",
+    image: "/codedpage.png",
     category: "Social Media",
     performance: "30% increase in followers",
     className: "absolute top-20 right-[35%] rotate-[2deg]",
   },
    {
     title: "Ecommerce Brand page",
-    image: "ushpage.png",
+    image: "/ushpage.png",
     category: "Social Media",
     performance: "30% increase in engagement",
     className: "absolute top-24 left-[45%] rotate-[-7deg]",
@@ -313,7 +313,7 @@ export const portfolioItems = [
 export const projects = [
   {
     id: 1,
-    title: " Coded Sensation",
+    title: " The Coded Sensation",
     des: "A brand that had strong product potential but lacked the structure and direction to scale.",
     img: "/coded.png",
     iconLists: ["/notionicon.png", "/canvaicon.png", "/davincicon.png", "/metaicon.png", "/buffericon.png"],
