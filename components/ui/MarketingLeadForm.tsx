@@ -131,7 +131,7 @@ export default function MarketingLeadForm() {
             <div className="text-center text-white">
               <Rocket className="mx-auto border-purple mb-6 w-16 h-16" />
               <h2 className="text-3xl font-heading font-bold mb-4">Message Sent Successfully!</h2>
-              <p className="text-lg  font-body mb-8">Thank you for reaching out. I'll get back to you soon.</p>
+              <p className="text-lg  font-body mb-8">Thank you for reaching out. I&apos;ll get back to you soon.</p>
               <button 
                 onClick={() => setIsSubmitted(false)} 
                 className="mt-4 px-6 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-all font-accent"
@@ -194,7 +194,7 @@ export default function MarketingLeadForm() {
           Your <span className="text-purple">Vision</span>
           <br />My <span className="text-purple">Expertise </span>
           <br />
-           Let's <span className="text-purple">connect</span>
+           Let&apos;s <span className="text-purple">connect</span>
         </h1>
       </div>
 
