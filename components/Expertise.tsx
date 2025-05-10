@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { companies } from "@/data";
+import Image from "next/image";
 
 const Expertise = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,15 +52,18 @@ const Expertise = () => {
                 className="flex flex-col items-center group transform transition-all duration-300 hover:scale-105 min-w-[120px] flex-shrink-0"
               >
                 <div className="flex  items-center gap-4 bg-white/10 p-4 rounded-xl shadow-2xl">
-                  <img
+                  <Image
                     src={company.img}
                     alt={company.name}
+                    width={48}
+                    height={48}
                     className="w-12 h-12 object-contain transition-transform group-hover:rotate-12 filter grayscale brightness-50 hover:grayscale-0 hover:brightness-100"
                   />
-                  <img
+                  <Image
                     src={company.nameImg}
                     alt={company.name}
                     width={company.id === 4 || company.id === 5 ? 100 : 150}
+                    height={48}
                     className="md:w-24 w-20 filter grayscale brightness-50 hover:grayscale-0 hover:brightness-100"
                   />
                 </div>
