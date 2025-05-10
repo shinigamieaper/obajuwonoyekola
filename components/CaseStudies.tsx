@@ -4,7 +4,6 @@ import { FaLocationArrow } from "react-icons/fa6";
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
 
-
 const CaseStudies = () => {
   return (
     <section id="case-studies" className="py-20 relative z-10">
