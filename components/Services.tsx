@@ -11,6 +11,7 @@ import MagicButton from "./MagicButton";
 
 // Icon imports
 import { FaLocationArrow, FaExpand } from "react-icons/fa6";
+import Image from "next/image";
 
 /**
  * Services Component
@@ -78,10 +79,11 @@ const Services: React.FC = () => {
           >
             {/* Service image container with hover effects */}
             <div className="relative h-48  w-full overflow-hidden">
-              <img
+              <Image
                 src={service.image}
                 alt={service.title}
-                className="w-full h-full  object-cover group-hover:scale-110 transition-transform duration-300"
+                fill
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <button 
@@ -151,7 +153,7 @@ const Services: React.FC = () => {
                         transform: `translateX(-${5 * index + 2}px)`,
                       }}
                     >
-                      <img src={icon} alt="tool icon" width={32} height={32} className="p-2" />
+                      <Image src={icon} alt="tool icon" width={32} height={32} className="p-2" />
                     </div>
                   ))}
                 </div>
