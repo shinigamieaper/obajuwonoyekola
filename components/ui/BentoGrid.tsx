@@ -7,10 +7,11 @@ import dynamic from "next/dynamic";
 
 import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./GradientBg";
-import GridGlobe from "./GridGlobe";
+import DynamicGlobe from "./DynamicGlobe";
 import MagicButton from "../MagicButton";
 import { MarketingExperienceCounter } from "@/components/MarketingExperienceCounter";
-
+import { globeData } from "@/data/globe-data";
+import countries from "@/data/globe.json";
 import animationData from "@/data/confetti.json";
 import { TextGenerateEffect } from "./TextGenerateEffect";
 
@@ -167,7 +168,75 @@ const leftLists = [
 )}
 
 
-          {id === 2 && <GridGlobe />}
+          {id === 2 && (
+            <div className="absolute inset-0 flex items-center flex-col justify-end  overflow-visible z-50">
+              <div className="w-[400px] h-[220px] -mb-24 relative">
+                <DynamicGlobe 
+                globeConfig={{
+                  pointSize: 6,
+                  globeColor: "#062056",
+                  showAtmosphere: true,
+                  atmosphereColor: "#FFFFFF",
+                  atmosphereAltitude: 0.15,
+                  emissive: "#062056",
+                  emissiveIntensity: 0.15,
+                  shininess: 1,
+                  polygonColor: "rgba(255,255,255,0.98)",
+                  ambientLight: "#38bdf8",
+                  directionalLeftLight: "#ffffff",
+                  directionalTopLight: "#ffffff",
+                  pointLight: "#ffffff",
+                  arcTime: 800,
+                  arcLength: 1,
+                  rings: 2,
+                  maxRings: 3,
+                  initialPosition: { lat: 22.3193, lng: 114.1694 },
+                  autoRotate: true,
+                  autoRotateSpeed: 1.4
+                }}
+                data={[
+                  {
+                    order: 1,
+                    startLat: 51.5074,
+                    startLng: -0.1278,
+                    endLat: 40.7128,
+                    endLng: -74.0060,
+                    arcAlt: 0.3,
+                    color: "#3b82f6"
+                  },
+                  {
+                    order: 1,
+                    startLat: 35.6762,
+                    startLng: 139.6503,
+                    endLat: 22.3193,
+                    endLng: 114.1694,
+                    arcAlt: 0.2,
+                    color: "#06b6d4"
+                  },
+                  {
+                    order: 2,
+                    startLat: 48.8566,
+                    startLng: 2.3522,
+                    endLat: 52.5200,
+                    endLng: 13.4050,
+                    arcAlt: 0.1,
+                    color: "#6366f1"
+                  },
+                  {
+                    order: 2,
+                    startLat: 1.3521,
+                    startLng: 103.8198,
+                    endLat: -33.8688,
+                    endLng: 151.2093,
+                    arcAlt: 0.4,
+                    color: "#06b6d4"
+                  }
+                ]}
+                countriesData={countries}
+              />
+              </div>
+            </div>
+          )}
 
           {id === 3 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">

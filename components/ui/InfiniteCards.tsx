@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useInView } from 'react-intersection-observer';
 
 export const InfiniteMovingCards = ({
   items,
@@ -20,29 +21,58 @@ export const InfiniteMovingCards = ({
   pauseOnHover?: boolean;
   className?: string;
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  // Use MutableRefObject instead of RefObject for containerRef
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    addAnimation();
-  }, []);
+  const { ref: inViewRef, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
+
+  // Create a callback ref that updates both refs
+  const setRefs = React.useCallback(
+    (element: HTMLDivElement | null) => {
+      // Update the ref we use for animations
+      containerRef.current = element;
+      
+      // Update the intersection observer ref
+      if (typeof inViewRef === 'function') {
+        inViewRef(element);
+      }
+    },
+    [inViewRef]
+  );
+
   const [start, setStart] = useState(false);
-  function addAnimation() {
-    if (containerRef.current && scrollerRef.current) {
-      const scrollerContent = Array.from(scrollerRef.current.children);
 
-      scrollerContent.forEach((item) => {
-        const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
-      });
+  const addAnimation = useCallback(() => {
+    if (!containerRef.current || !scrollerRef.current || start) return;
 
+    const scrollerContent = Array.from(scrollerRef.current.children);
+    const fragment = document.createDocumentFragment();
+
+    scrollerContent.forEach((item) => {
+      const duplicatedItem = item.cloneNode(true);
+      fragment.appendChild(duplicatedItem);
+    });
+
+    if (scrollerRef.current) {
+      scrollerRef.current.appendChild(fragment);
       getDirection();
       getSpeed();
       setStart(true);
     }
-  }
+  }, [start]);
+
+  useEffect(() => {
+    if (inView) {
+      // Use requestAnimationFrame to defer animation setup
+      requestAnimationFrame(() => {
+        addAnimation();
+      });
+    }
+  }, [inView, addAnimation]);
   const getDirection = () => {
     if (containerRef.current) {
       if (direction === "left") {
@@ -71,10 +101,10 @@ export const InfiniteMovingCards = ({
   };
   return (
     <div
-      ref={containerRef}
+      ref={setRefs}
       className={cn(
-        // max-w-7xl to w-screen
-        "scroller relative z-20 w-screen overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 w-screen overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "will-change-transform",
         className
       )}
     >
@@ -91,7 +121,8 @@ export const InfiniteMovingCards = ({
           <li
             //   change md:w-[450px] to md:w-[60vw] , px-8 py-6 to p-16, border-slate-700 to border-slate-800
             className="w-[90vw] max-w-full relative rounded-2xl border border-b-0
-             flex-shrink-0 border-slate-800 p-5 md:p-16 md:w-[60vw]"
+             flex-shrink-0 border-slate-800 p-5 md:p-16 md:w-[60vw]
+             will-change-transform translate-z-0"
             style={{
               //   background:
               //     "linear-gradient(180deg, var(--slate-800), var(--slate-900)", //remove this one

@@ -1,10 +1,26 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Object3DNode, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import dynamic from 'next/dynamic';
+// Import countries data statically to avoid dynamic import issues
 import countries from "@/data/globe.json";
+
+// Helper function for color conversion
+function hexToRgb(hex: string) {
+  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  const fullHex = hex.replace(shorthandRegex, (_, r, g, b) => r + r + g + g + b + b);
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(fullHex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
 declare module "@react-three/fiber" {
   interface ThreeElements {
     threeGlobe: Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
@@ -53,29 +69,34 @@ export type GlobeConfig = {
   autoRotateSpeed?: number;
 };
 
-interface WorldProps {
+export interface WorldProps {
   globeConfig: GlobeConfig;
   data: Position[];
   countriesData: any; // geojson type
 }
 
-let numbersOfRings = [0];
+const BaseGlobeComponent = React.memo(({ globeConfig, data, countriesData }: WorldProps) => {
+  // Use a ref for mutable state that doesn't need re-renders
+  const numbersOfRings = useRef<Set<number>>(new Set([0]));
 
-export function Globe({ globeConfig, data, countriesData }: WorldProps) {
-  const [globeData, setGlobeData] = useState<
-    | {
-        size: number;
-        order: number;
-        color: (t: number) => string;
-        lat: number;
-        lng: number;
-      }[]
-    | null
-  >(null);
+  // Helper function to check if a number exists in the set
+  const hasNumber = useCallback((num: number) => numbersOfRings.current.has(num), []);
+
+  // Helper function to add a number to the set
+  const addNumber = useCallback((num: number) => numbersOfRings.current.add(num), []);
+
+  const [globeData, setGlobeData] = useState<{
+    size: number;
+    order: number;
+    color: (t: number) => string;
+    lat: number;
+    lng: number;
+  }[] | null>(null);
 
   const globeRef = useRef<ThreeGlobe | null>(null);
 
-  const defaultProps = {
+  // Memoize default props to prevent unnecessary recalculations
+  const defaultProps = useMemo(() => ({
     pointSize: 1,
     atmosphereColor: "#ffffff",
     showAtmosphere: true,
@@ -90,14 +111,27 @@ export function Globe({ globeConfig, data, countriesData }: WorldProps) {
     rings: 1,
     maxRings: 3,
     ...globeConfig,
-  };
+  }), [globeConfig]);
+
+  // Debounce globe updates
+  const [isUpdating, setIsUpdating] = useState(false);
+  
+  const updateGlobe = useCallback(() => {
+    if (!globeRef.current || isUpdating) return;
+    
+    setIsUpdating(true);
+    requestAnimationFrame(() => {
+      _buildData();
+      _buildMaterial();
+      setIsUpdating(false);
+    });
+  }, [isUpdating]);
 
   useEffect(() => {
     if (globeRef.current) {
-      _buildData();
-      _buildMaterial();
+      updateGlobe();
     }
-  }, [data, globeConfig]);
+  }, [data, defaultProps, updateGlobe]);
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
@@ -212,14 +246,18 @@ export function Globe({ globeConfig, data, countriesData }: WorldProps) {
 
     const interval = setInterval(() => {
       if (!globeRef.current || !globeData) return;
-      numbersOfRings = genRandomNumbers(
+      
+      // Generate new ring IDs and add them to our set
+      const ringIds = genRandomNumbers(
         0,
         data.length,
         Math.floor((data.length * 4) / 5)
       );
+      ringIds.forEach((id: number) => addNumber(id));
 
+      // Update rings with current set of IDs
       globeRef.current.ringsData(
-        globeData.filter((d, i) => numbersOfRings.includes(i))
+        globeData.filter((d, i) => hasNumber(i))
       );
     }, 2000);
 
@@ -233,79 +271,58 @@ export function Globe({ globeConfig, data, countriesData }: WorldProps) {
       <threeGlobe ref={globeRef} />
     </>
   );
-}
+});
 
 export function WebGLRendererConfig() {
-  const { gl, size } = useThree();
+  const { gl } = useThree();
 
   useEffect(() => {
     gl.setPixelRatio(window.devicePixelRatio);
-    gl.setSize(size.width, size.height);
-    gl.setClearColor(0xffaaff, 0);
-  }, []);
+  }, [gl]);
 
   return null;
 }
 
-export function World(props: WorldProps) {
+const World: React.FC<WorldProps> = React.memo((props) => {
   const { globeConfig, data, countriesData } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
+
+  // Memoize camera settings
+  const cameraSettings = useMemo(() => new PerspectiveCamera(50, aspect, 180, 1800), []);
+
+  // Set camera position
+  useEffect(() => {
+    cameraSettings.position.set(0, 0, cameraZ);
+  }, [cameraSettings, cameraZ]); // Add cameraZ to dependency array
+
+  // Memoize orbit control settings
+  const orbitSettings = useMemo(() => ({
+    enableZoom: false,
+    enablePan: false,
+    autoRotate: props.globeConfig.autoRotate,
+    autoRotateSpeed: props.globeConfig.autoRotateSpeed || 0.5,
+    minPolarAngle: Math.PI / 3.5,
+    maxPolarAngle: Math.PI - Math.PI / 3
+  }), [props.globeConfig.autoRotate, props.globeConfig.autoRotateSpeed]);
+
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
-      <WebGLRendererConfig />
-      <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
+    <Canvas camera={cameraSettings}>
       <directionalLight
-        color={globeConfig.directionalLeftLight}
-        position={new Vector3(-400, 100, 400)}
-      />
-      <directionalLight
-        color={globeConfig.directionalTopLight}
-        position={new Vector3(-200, 500, 200)}
-      />
-      <pointLight
-        color={globeConfig.pointLight}
         position={new Vector3(-200, 500, 200)}
         intensity={0.8}
       />
-      <Globe globeConfig={globeConfig} data={data} countriesData={countriesData} />
-      <OrbitControls
-        enablePan={true}
-        enableZoom={true}
-        enableRotate={true}
-        minDistance={cameraZ}
-        maxDistance={cameraZ}
-        autoRotate={globeConfig.autoRotate}
-        autoRotateSpeed={globeConfig.autoRotateSpeed || 1}
-        minPolarAngle={Math.PI / 3.5}
-        maxPolarAngle={Math.PI - Math.PI / 3}
-      />
+      <OrbitControls {...orbitSettings} />
+      <BaseGlobeComponent globeConfig={props.globeConfig} data={props.data} countriesData={props.countriesData} />
     </Canvas>
   );
-}
+});
 
-export function hexToRgb(hex: string) {
-  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
-    return r + r + g + g + b + b;
-  });
+const genRandomNumbers = (min: number, max: number, count: number): number[] => {
+  return Array.from({ length: count }, () => 
+    Math.floor(Math.random() * (max - min + 1)) + min
+  );
+};
 
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
-}
-
-export function genRandomNumbers(min: number, max: number, count: number) {
-  const arr = [];
-  while (arr.length < count) {
-    const r = Math.floor(Math.random() * (max - min)) + min;
-    if (arr.indexOf(r) === -1) arr.push(r);
-  }
-
-  return arr;
-}
+// Export the World component
+export { World };

@@ -68,7 +68,7 @@ export const FloatingNav = ({
           // change rounded-full to rounded-lg
           // remove dark:border-white/[0.2] dark:bg-black bg-white border-transparent
           // change  pr-2 pl-8 py-2 to px-10 py-5
-          "flex max-w-fit md:min-w-[70vw] :min-w-[70vw] lg:min-w-fit  fixed z-[5000] top-10 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-4",
+          "flex max-w-fit md:min-w-[70vw] :min-w-[70vw] lg:min-w-fit  fixed z-[5000] top-10 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-center justify-center space-x-6",
           className
         )}
         style={{
@@ -87,13 +87,22 @@ export const FloatingNav = ({
                 navItem.subItems ? "cursor-pointer font-accent" : ""
               )}
             >
-              <Link href={navItem.link}>
-                <span className="block font-accent sm:hidden">{navItem.icon}</span>
-                <span className="text-xs  flex font-accent items-center">
-                  {navItem.name}
-                  {navItem.subItems && <ChevronDown className={`ml-1 h-4 w-4 font-accent transition-transform ${openDropdown === navItem.name ? 'rotate-180' : ''}`} />}
-                </span>
-              </Link>
+              {navItem.subItems ? (
+                <div className="cursor-pointer">
+                  <span className="block font-accent sm:hidden">{navItem.icon}</span>
+                  <span className="text-xs flex font-accent items-center">
+                    {navItem.name}
+                    <ChevronDown className={`ml-1 h-4 w-4 font-accent transition-transform ${openDropdown === navItem.name ? 'rotate-180' : ''}`} />
+                  </span>
+                </div>
+              ) : (
+                <Link href={navItem.link}>
+                  <span className="block font-accent sm:hidden">{navItem.icon}</span>
+                  <span className="text-xs flex font-accent items-center">
+                    {navItem.name}
+                  </span>
+                </Link>
+              )}
             </div>
             {navItem.subItems && openDropdown === navItem.name && (
               <motion.div 
@@ -106,7 +115,7 @@ export const FloatingNav = ({
                   borderRadius: "12px",
                   border: "1px solid rgba(255, 255, 255, 0.125)",
                 }}
-                className="absolute p-2 mt-2 space-y-2 min-w-[100px] z-50 shadow-lg"
+                className="absolute p-2 mt-2 space-y-4 min-w-[90px] z-50 shadow-lg"
               >
                 {navItem.subItems.map((subItem: any, subIdx: number) => (
                   <Link

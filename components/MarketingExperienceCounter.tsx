@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 interface MarketingExperience {
   years: number;
@@ -10,6 +10,28 @@ interface MarketingExperience {
   minutes: number;
   seconds: number;
 }
+
+// Memoized time calculation function
+const calculateTimeDifference = (start: Date, end: Date): MarketingExperience => {
+  const totalSeconds = Math.floor((end.getTime() - start.getTime()) / 1000);
+  
+  const years = Math.floor(totalSeconds / (365 * 24 * 60 * 60));
+  const remainingSeconds = totalSeconds % (365 * 24 * 60 * 60);
+  
+  const months = Math.floor(remainingSeconds / (30 * 24 * 60 * 60));
+  const remainingSecondsAfterMonths = remainingSeconds % (30 * 24 * 60 * 60);
+  
+  const days = Math.floor(remainingSecondsAfterMonths / (24 * 60 * 60));
+  const remainingSecondsAfterDays = remainingSecondsAfterMonths % (24 * 60 * 60);
+  
+  const hours = Math.floor(remainingSecondsAfterDays / (60 * 60));
+  const remainingSecondsAfterHours = remainingSecondsAfterDays % (60 * 60);
+  
+  const minutes = Math.floor(remainingSecondsAfterHours / 60);
+  const seconds = remainingSecondsAfterHours % 60;
+  
+  return { years, months, days, hours, minutes, seconds };
+};
 
 interface MarketingExperienceCounterProps {
   startDate?: string;
@@ -26,73 +48,44 @@ export const MarketingExperienceCounter: React.FC<MarketingExperienceCounterProp
   valueClassName = 'font-accent text-xl font-bold text-white w-12 text-right',
   labelClassName = 'font-body text-xs text-gray-400'
 }) => {
-  const [marketingExperience, setMarketingExperience] = useState<MarketingExperience>({
-    years: 0,
-    months: 0,
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
+  // Memoize the start date to prevent unnecessary recalculations
+  const startDateObj = useMemo(() => new Date(startDate), [startDate]);
+
+  // Initialize state with actual values instead of zeros
+  const [marketingExperience, setMarketingExperience] = useState<MarketingExperience>(() => 
+    calculateTimeDifference(startDateObj, new Date())
+  );
+
+  // Memoize the update function
+  const updateExperience = useCallback(() => {
+    const now = new Date();
+    setMarketingExperience(prev => {
+      const next = calculateTimeDifference(startDateObj, now);
+      // Only update if seconds changed to prevent unnecessary rerenders
+      return next.seconds !== prev.seconds ? next : prev;
+    });
+  }, [startDateObj]);
 
   useEffect(() => {
-    const startDateObj = new Date(startDate);
-    
-    const calculateTimeDifference = (start: Date, end: Date): MarketingExperience => {
-      const totalSeconds = Math.floor((end.getTime() - start.getTime()) / 1000);
-      
-      const years = Math.floor(totalSeconds / (365 * 24 * 60 * 60));
-      const remainingSeconds = totalSeconds % (365 * 24 * 60 * 60);
-      
-      const months = Math.floor(remainingSeconds / (30 * 24 * 60 * 60));
-      const remainingSecondsAfterMonths = remainingSeconds % (30 * 24 * 60 * 60);
-      
-      const days = Math.floor(remainingSecondsAfterMonths / (24 * 60 * 60));
-      const remainingSecondsAfterDays = remainingSecondsAfterMonths % (24 * 60 * 60);
-      
-      const hours = Math.floor(remainingSecondsAfterDays / (60 * 60));
-      const remainingSecondsAfterHours = remainingSecondsAfterDays % (60 * 60);
-      
-      const minutes = Math.floor(remainingSecondsAfterHours / 60);
-      const seconds = remainingSecondsAfterHours % 60;
-      
-      return { years, months, days, hours, minutes, seconds };
-    };
+    // Update every second instead of every frame
+    const intervalId = setInterval(updateExperience, 1000);
 
-    const updateExperience = () => {
-      const now = new Date();
-      const experience = calculateTimeDifference(startDateObj, now);
-      setMarketingExperience(experience);
-    };
+    return () => clearInterval(intervalId);
+  }, [updateExperience]);
 
-    // Initial update
-    updateExperience();
-
-    // Use requestAnimationFrame for smoother updates
-    let frameId: number;
-    const animateExperience = () => {
-      updateExperience();
-      frameId = requestAnimationFrame(animateExperience);
-    };
-
-    frameId = requestAnimationFrame(animateExperience);
-
-    // Cleanup function
-    return () => {
-      cancelAnimationFrame(frameId);
-    };
-  }, [startDate]);
+  // Memoize the time units to prevent unnecessary recalculations
+  const timeUnits = useMemo(() => [
+    { label: 'Years', value: marketingExperience.years },
+    { label: 'Months', value: marketingExperience.months },
+    { label: 'Days', value: marketingExperience.days },
+    { label: 'Hours', value: marketingExperience.hours },
+    { label: 'Minutes', value: marketingExperience.minutes },
+    { label: 'Seconds', value: marketingExperience.seconds }
+  ], [marketingExperience]);
 
   return (
     <div className={className}>
-      {[
-        { label: 'Years', value: marketingExperience.years },
-        { label: 'Months', value: marketingExperience.months },
-        { label: 'Days', value: marketingExperience.days },
-        { label: 'Hours', value: marketingExperience.hours },
-        { label: 'Minutes', value: marketingExperience.minutes },
-        { label: 'Seconds', value: marketingExperience.seconds }
-      ].map(({ label, value }) => (
+      {timeUnits.map(({ label, value }) => (
         <div 
           key={label} 
           className={itemClassName}
