@@ -91,7 +91,7 @@ const leftLists = [
   return (
     <div
       className={cn(
-        "row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
+        "row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4  ",
         className
       )}
       style={{
@@ -260,7 +260,7 @@ const leftLists = [
           )}
 
           {id === 5 && (
-            <div className="absolute bottom-0 left-0 w-full flex flex-row justify-between items-center p-4">
+            <div className="absolute bottom-0 left-0 w-full flex flex-row justify-between items-center p-4 ">
               <MarketingExperienceCounter 
                 className="flex flex-row items-center gap-1 lg:gap-4"
                 itemClassName="flex flex-col items-center "
@@ -272,7 +272,7 @@ const leftLists = [
           )}
 
           {id === 6 && (
-            <div className="mt-5 relative">
+            <div className="mt-5 relative ">
               {copied && (
                 <div className="absolute -bottom-5 right-0">
                   <Lottie 
