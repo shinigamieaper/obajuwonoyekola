@@ -277,7 +277,9 @@ export function WebGLRendererConfig() {
   const { gl } = useThree();
 
   useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
+    if (typeof window !== 'undefined') {
+      gl.setPixelRatio(window.devicePixelRatio || 1);
+    }
   }, [gl]);
 
   return null;

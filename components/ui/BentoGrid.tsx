@@ -37,16 +37,7 @@ export const BentoGrid = ({
 };
 
 
-export const BentoGridItem = ({
-  className,
-  id,
-  title,
-  description,
-  img,
-  imgClassName,
-  titleClassName,
-  spareImg,
-}: {
+export interface BentoGridItemProps {
   className?: string;
   id: number;
   title?: string | React.ReactNode;
@@ -55,6 +46,17 @@ export const BentoGridItem = ({
   imgClassName?: string;
   titleClassName?: string;
   spareImg?: string;
+}
+
+export const BentoGridItem: React.FC<BentoGridItemProps> = ({
+  className,
+  id,
+  title,
+  description,
+  img,
+  imgClassName,
+  titleClassName,
+  spareImg,
 }) => {
   
 const leftLists = [
@@ -106,7 +108,7 @@ const leftLists = [
             <img
               src={img}
               alt={img}
-              className={cn(imgClassName, "object-cover, object-center ")}
+              className={cn(imgClassName, "object-cover object-center")}
             />
           )}
         </div>

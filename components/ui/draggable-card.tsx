@@ -63,24 +63,26 @@ export const DraggableCardBody = ({
     // Update constraints when component mounts or window resizes
     const updateConstraints = () => {
       if (typeof window !== "undefined") {
+        const height = window.innerHeight || 768; // Fallback height
+        const width = window.innerWidth || 1024;  // Fallback width
         setConstraints({
-          top: -window.innerHeight / 2,
-          left: -window.innerWidth / 2,
-          right: window.innerWidth / 2,
-          bottom: window.innerHeight / 2,
+          top: -height / 2,
+          left: -width / 2,
+          right: width / 2,
+          bottom: height / 2,
         });
       }
     };
 
-    updateConstraints();
+    // Only add event listeners on the client side
+    if (typeof window !== "undefined") {
+      updateConstraints();
+      window.addEventListener("resize", updateConstraints);
 
-    // Add resize listener
-    window.addEventListener("resize", updateConstraints);
-
-    // Clean up
-    return () => {
-      window.removeEventListener("resize", updateConstraints);
-    };
+      return () => {
+        window.removeEventListener("resize", updateConstraints);
+      };
+    }
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
